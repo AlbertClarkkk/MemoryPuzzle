@@ -1,0 +1,50 @@
+import random
+
+# Create a list of emojis
+emojis = ['🐶', '🐱', '🐭', '🐹', '🐰', '🐻', '🐼', '🐨']
+
+# Duplicate the emojis to create pairs
+emojis = emojis * 2
+
+# Shuffle the list
+random.shuffle(emojis)
+
+# Generate the board
+board = [[None] * 4 for _ in range(4)]
+
+# Populate the board with emojis
+for i in range(4):
+    for j in range(4):
+        index = i * 4 + j
+        board[i][j] = emojis[index]
+
+# Function to print the board
+def print_board():
+    for row in board:
+        print('\t'.join(row))
+
+# Function to play the game
+def play_game():
+    print("Memory Puzzle Game - Match the Pairs!")
+    print_board()
+
+    while True:
+        # Get user input for first card
+        first_row = int(input("Enter the row number of the first card: "))
+        first_col = int(input("Enter the column number of the first card: "))
+
+        # Get user input for second card
+        second_row = int(input("Enter the row number of the second card: "))
+        second_col = int(input("Enter the column number of the second card: "))
+
+        # Check if the selected cards are a pair
+        if board[first_row][first_col] == board[second_row][second_col]:
+            print("Congratulations! You found a pair.")
+            board[first_row][first_col] = ' '
+            board[second_row][second_col] = ' '
+        else:
+            print("Oops! The cards didn't match.")
+
+        # Print the updated board
+        print_board()
+
